@@ -2,9 +2,7 @@ const models = require('../models');
 
 const { Domo } = models;
 
-const makerPage = async (req, res) => {
-  return res.render('app');
-};
+const makerPage = async (req, res) => res.render('app');
 
 const makeDomo = async (req, res) => {
   if (!req.body.name || !req.body.age || !req.body.slushies) {
@@ -23,7 +21,10 @@ const makeDomo = async (req, res) => {
   try {
     const newDomo = new Domo(domoData);
     await newDomo.save();
-    return res.status(201).json({ name: newDomo.name, age: newDomo.age, slushies: newDomo.slushies });
+    return res.status(201).json({ name: newDomo.name,
+      age: newDomo.age,
+      slushies: newDomo.slushies
+    });
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {
