@@ -69,6 +69,12 @@ nav:nth-child(1) {
 
 .domoForm input[type=text] {
     float:left;
+    width: 120px;
+}
+
+.domoForm input[type=number] {
+    float:left;
+    width: 60px;
 }
 
 .makeDomoSubmit {
@@ -79,6 +85,7 @@ nav:nth-child(1) {
     border-radius: 2px;
     color: white;
     text-decoration: none;
+    margin-left: 50px;
 }
 
 .makeDomoSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
@@ -250,7 +257,16 @@ h3.domoName {
 h3.domoAge {
     float:right;
     text-align: left;
-    width: 100px;
+    width: 120px;
+    font-weight: bold;
+    padding-right: 40px;
+    font-size: 1.5em;
+}
+
+h3.domoSlushies {
+    float:right;
+    text-align: left;
+    width: 120px;
     font-weight: bold;
     padding-right: 40px;
     font-size: 1.5em;
