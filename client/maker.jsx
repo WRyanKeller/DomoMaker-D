@@ -20,6 +20,15 @@ const handleDomo = e => {
     return false;
 };
 
+const deleteDomo = (e, name, age, slushies) => {
+    e.preventDefault();
+    helper.hideError();
+
+    helper.sendPost('/delete', {name, age, slushies}, loadDomosFromServer);
+
+    return false;
+};
+
 const DomoForm = props => {
     return (
         <form id="domoForm"
@@ -54,6 +63,7 @@ const DomoList = props => {
             <div key={domo._id} className='domo'>
                 <img src='/assets/img/domoface.jpeg' alt='domo face' className='domoFace' />
                 <h3 className='domoName'> Name: {domo.name} </h3>
+                <button onClick={e => deleteDomo(e, domo.name, domo.age, domo.slushies)}>X</button>
                 <h3 className='domoAge'> Age: {domo.age} </h3>
                 <h3 className='domoSlushies'> Slushies: {domo.slushies} </h3>
             </div>

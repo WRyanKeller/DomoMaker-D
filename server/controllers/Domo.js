@@ -21,9 +21,10 @@ const makeDomo = async (req, res) => {
   try {
     const newDomo = new Domo(domoData);
     await newDomo.save();
-    return res.status(201).json({ name: newDomo.name,
+    return res.status(201).json({
+      name: newDomo.name,
       age: newDomo.age,
-      slushies: newDomo.slushies
+      slushies: newDomo.slushies,
     });
   } catch (err) {
     console.log(err);
@@ -55,8 +56,40 @@ const getDomos = async (req, res) => {
   }
 };
 
+const deleteDomo = async (req, res) => {
+  if (!req.body.name || !req.body.age || !req.body.slushies) {
+    return res.status(400).json({
+      error: 'All fields are required!',
+    });
+  }
+
+  let doc;
+  try {
+    doc = await Domo.findOneAndDelete(
+      {
+        name: req.body.name,
+        age: req.body.age,
+        slushies: req.body.slushies,
+        owner: req.session.account._id,
+      },
+      {},
+    ).exec();
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: 'Something went wrong' });
+  }
+
+  if (!doc) {
+    return res.status(404).json({ error: 'Domo not Found!' });
+  }
+
+  // Otherwise, we got a result and will send "okay" to the user.
+  return res.status(200).json();
+};
+
 module.exports = {
   makerPage,
   makeDomo,
   getDomos,
+  deleteDomo,
 };
