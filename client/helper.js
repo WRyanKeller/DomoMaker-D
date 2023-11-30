@@ -19,7 +19,7 @@ const sendPost = async (url, data, handler) => {
     body: JSON.stringify(data),
   });
 
-  const result = response.status === 200 ? {} : await response.json();
+  const result = response.status === 204 ? {} : await response.json();
   document.getElementById('domoMessage').classList.add('hidden');
 
   if (result.redirect) {

@@ -84,7 +84,7 @@ const deleteDomo = async (req, res) => {
   }
 
   // Otherwise, we got a result and will send "okay" to the user.
-  return res.status(200).json();
+  return res.status(204).json();
 };
 
 module.exports = {
